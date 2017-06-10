@@ -30,6 +30,9 @@
 		<version.cucumber-java>1.2.5</version.cucumber-java>
 	</properties>
 	<modules>
+		<module>
+			TI-maven-project-maker/test-maven-project-maker-commons
+		</module>
 		<module>maven-project-maker-core</module>
 		<module>TI-maven-project-maker</module>
 	</modules>
@@ -39,6 +42,11 @@
 			<dependency>
 				<groupId>org.nullpointer4j</groupId>
 				<artifactId>maven-project-maker-core</artifactId>
+				<version>1.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.nullpointer4j</groupId>
+				<artifactId>test-maven-project-maker-commons</artifactId>
 				<version>1.0.1</version>
 				<scope>test</scope>
 			</dependency>
@@ -63,7 +71,6 @@
 				<artifactId>xstream</artifactId>
 				<version>1.4.9</version>
 			</dependency>
-			<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-io -->
 			<dependency>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-io</artifactId>

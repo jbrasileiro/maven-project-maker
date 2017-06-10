@@ -1,6 +1,8 @@
 package org.npe4j.mpmaker.core.xml.pom;
 
+import javax.xml.bind.annotation.XmlAccessOrder;
 import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorOrder;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -16,6 +18,7 @@ import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 @XmlRootElement(
     namespace = "http://maven.apache.org/POM/4.0.0",
     name = "project")
+@XmlAccessorOrder(value=XmlAccessOrder.UNDEFINED)
 public final class XMLProjectObjectModel
     extends
     XMLArtifact {
@@ -47,9 +50,9 @@ public final class XMLProjectObjectModel
     @XStreamAlias("name")
     @XmlElement
     private String name;
-//    @XStreamAlias("properties")
-//    @XmlElement
-//    private XMLPropertyGroup properties;
+    @XStreamAlias("properties")
+    @XmlElement
+    private XMLPropertyGroup properties;
     @XStreamAlias("modules")
     @XmlElement
     private XMLModuleGroup modules;
@@ -78,7 +81,7 @@ public final class XMLProjectObjectModel
         version = bean.version;
         packaging = bean.packaging;
         name = bean.name;
-//        properties = bean.properties;
+        properties = bean.properties;
         modules = bean.modules;
         dependencyManagement = bean.dependencyManagement;
         dependencies = bean.dependencies;
@@ -140,13 +143,12 @@ public final class XMLProjectObjectModel
     }
 
     public XMLPropertyGroup getProperties() {
-//        return properties;
-        return null;
+        return properties;
     }
 
     public void setProperties(
         final XMLPropertyGroup properties) {
-//        this.properties = properties;
+        this.properties = properties;
     }
 
     public XMLModuleGroup getModules() {

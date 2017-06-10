@@ -1,6 +1,6 @@
 package org.npe4j.mpmaker.core.builder;
 
-import org.npe4j.mpmaker.core.BasicPOMInformation;
+import org.npe4j.mpmaker.bean.BasicPOMInformation;
 import org.npe4j.mpmaker.core.enums.TypePOMPacking;
 
 public final class SimplePOMBuilder

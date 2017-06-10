@@ -1,14 +1,14 @@
-package org.deleterdirectory.it.step;
+package org.nullpointer4j.mpm.ti.step;
 
 import org.junit.Assert;
 import org.npe4j.mpmaker.MavenProjectMaker;
+import org.npe4j.mpmaker.bean.BasicPOMInformation;
+import org.npe4j.mpmaker.bean.BasicPOMInformationImp;
 import org.npe4j.mpmaker.commons.StringUtil;
 import org.npe4j.mpmaker.commons.dp.BeanDPBuilder;
 import org.npe4j.mpmaker.commons.io.GenericFileMarshaller;
 import org.npe4j.mpmaker.commons.io.jaxb.GenericJAXBMarshaller;
 import org.npe4j.mpmaker.commons.xml.XMLMarshaller;
-import org.npe4j.mpmaker.core.BasicPOMInformation;
-import org.npe4j.mpmaker.core.BasicPOMInformationImp;
 import org.npe4j.mpmaker.core.POMBuilderFactory;
 import org.npe4j.mpmaker.core.POMBuilderFactoryImp;
 import org.npe4j.mpmaker.core.POMTransformer;

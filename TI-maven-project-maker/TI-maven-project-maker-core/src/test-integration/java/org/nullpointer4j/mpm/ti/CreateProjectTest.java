@@ -1,4 +1,4 @@
-package org.deleterdirectory.it;
+package org.nullpointer4j.mpm.ti;
 
 import org.junit.runner.RunWith;
 

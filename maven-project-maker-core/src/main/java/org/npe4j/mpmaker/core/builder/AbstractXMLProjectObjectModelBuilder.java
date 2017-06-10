@@ -5,12 +5,12 @@ import java.util.Locale;
 import org.npe4j.mpmaker.commons.dp.BeanDPBuilder;
 import org.npe4j.mpmaker.commons.dp.TemplateDPBuilder;
 import org.npe4j.mpmaker.core.enums.TypePOMPacking;
+import org.npe4j.mpmaker.core.xml.custom.XMLProperty;
 import org.npe4j.mpmaker.core.xml.pom.XMLBuild;
 import org.npe4j.mpmaker.core.xml.pom.XMLDependencyGroup;
 import org.npe4j.mpmaker.core.xml.pom.XMLDependencyManagement;
 import org.npe4j.mpmaker.core.xml.pom.XMLModuleGroup;
 import org.npe4j.mpmaker.core.xml.pom.XMLProjectObjectModel;
-import org.npe4j.mpmaker.core.xml.pom.XMLProperty;
 import org.npe4j.mpmaker.core.xml.pom.XMLPropertyGroup;
 
 abstract class AbstractXMLProjectObjectModelBuilder
@@ -80,7 +80,7 @@ abstract class AbstractXMLProjectObjectModelBuilder
         if(getBean().getProperties() == null){
             getBean().setProperties(new XMLPropertyGroup());
         }
-//        getBean().getProperties().add(property);
+        getBean().getProperties().add(property);
         return this;
     }
 

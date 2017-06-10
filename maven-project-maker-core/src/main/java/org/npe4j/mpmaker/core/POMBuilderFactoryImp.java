@@ -3,6 +3,7 @@ package org.npe4j.mpmaker.core;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.npe4j.mpmaker.bean.BasicPOMInformation;
 import org.npe4j.mpmaker.core.builder.DefaultPOMBuilder;
 import org.npe4j.mpmaker.core.builder.SimplePOMBuilder;
 import org.npe4j.mpmaker.core.builder.XMLProjectObjectModelBuilder;
@@ -16,14 +17,29 @@ public final class POMBuilderFactoryImp
     public XMLProjectObjectModelBuilder make(
         final TypeProjectMaven type,
         final BasicPOMInformation info) {
-        return getMap(info).get(type);
+        return getMap(info).get(type).get();
     }
 
-    private Map<TypeProjectMaven, XMLProjectObjectModelBuilder> getMap(
+    private Map<TypeProjectMaven, POMBuilderProvider> getMap(
         final BasicPOMInformation info) {
-        HashMap<TypeProjectMaven, XMLProjectObjectModelBuilder> result = new HashMap<>();
-        result.put(TypeProjectMaven.NONE, new SimplePOMBuilder(info));
-        result.put(TypeProjectMaven.DEFAULT, new DefaultPOMBuilder(info));
+        HashMap<TypeProjectMaven, POMBuilderProvider> result = new HashMap<>();
+        result.put(TypeProjectMaven.NONE, newSimplePOMBuilder(info));
+        result.put(TypeProjectMaven.DEFAULT, newDefaultPOMBuilder(info));
         return result;
     }
+
+    private POMBuilderProvider newSimplePOMBuilder(
+        final BasicPOMInformation info) {
+        return () -> new SimplePOMBuilder(info);
+    }
+
+    private POMBuilderProvider newDefaultPOMBuilder(
+        final BasicPOMInformation info) {
+        return () -> new DefaultPOMBuilder(info);
+    }
+}
+
+interface POMBuilderProvider {
+
+    XMLProjectObjectModelBuilder get();
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<project
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.example</groupId>
+	<artifactId>example</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+	<properties>
+		<version.junit>4.12</version.junit>
+		<version.maven-resources-plugin>3.0.1</version.maven-resources-plugin>
+		<version.mockito-all>1.10.19</version.mockito-all>
+		<version-maven-compiler-plugin>3.6.1</version-maven-compiler-plugin>
+		<version.build-helper-maven-plugin>1.0.0</version.build-helper-maven-plugin>
+		<project.property.folder>${basedir}/src/properties</project.property.folder>
+		<version.maven-failsafe-plugin>3.0.0</version.maven-failsafe-plugin>
+		<version.sonar-maven-plugin>3.2</version.sonar-maven-plugin>
+	</properties>
+</project>

@@ -1,4 +1,4 @@
-package org.npe4j.mpmaker.core;
+package org.npe4j.mpmaker.bean;
 
 import org.npe4j.mpmaker.core.enums.TypePOMPacking;
 
