@@ -1,9 +1,9 @@
 package org.npe4j.mpmaker.core.builder;
 
-import java.util.Set;
+import java.util.Collection;
+import java.util.LinkedList;
 
 import org.npe4j.mpmaker.bean.BasicPOMInformation;
-import org.npe4j.mpmaker.commons.util.SetUtils;
 import org.npe4j.mpmaker.core.xml.custom.XMLProperty;
 import org.npe4j.mpmaker.core.xml.pom.XMLPropertyGroup;
 
@@ -25,42 +25,37 @@ public final class DefaultPOMBuilder
 
     protected XMLPropertyGroup properties() {
         XMLPropertyGroup result = new XMLPropertyGroup();
-        Set<XMLProperty> set = SetUtils.newLinkedHashSet();
-        addAll(set, getProjectProperties());
-        addAll(set, getPluginVersionProperties());
-        addAll(set, getDependencyVersionProperties());
-        result.addAll(set);
+        result.addAll(getProjectProperties());
+        result.addAll(getPluginVersionProperties());
+        result.addAll(getDependencyVersionProperties());
         return result;
     }
 
-    private void addAll(
-        final Set<XMLProperty> set,
-        final Set<XMLProperty> add) {
-        for (XMLProperty each : add) {
-            set.add(each);
-        }
-    }
-
-    private Set<XMLProperty> getProjectProperties() {
-        Set<XMLProperty> set = SetUtils.newLinkedHashSet();
+    private Collection<XMLProperty> getProjectProperties() {
+        Collection<XMLProperty> set = newLinkedList();
         set.add(newXMLProperty("project.property.folder", "${basedir}/src/properties"));
         return set;
     }
 
-    protected Set<XMLProperty> getPluginVersionProperties() {
-        Set<XMLProperty> set = SetUtils.newLinkedHashSet();
+    protected Collection<XMLProperty> getPluginVersionProperties() {
+        Collection<XMLProperty> set = newLinkedList();
         set.add(newXMLProperty("version-maven-compiler-plugin", "3.6.1"));
-        set.add(newXMLProperty("version.maven-resources-plugin", "3.0.1"));
-        set.add(newXMLProperty("version.sonar-maven-plugin", "3.2"));
-        set.add(newXMLProperty("version.build-helper-maven-plugin", "1.0.0"));
-        set.add(newXMLProperty("version.maven-failsafe-plugin", "3.0.0"));
+        set.add(newXMLProperty("version-maven-resources-plugin", "3.0.1"));
+        set.add(newXMLProperty("version-sonar-maven-plugin", "3.2"));
+        set.add(newXMLProperty("version-properties-maven-plugin", "1.0.0"));
+        set.add(newXMLProperty("version-build-helper-maven-plugin", "3.0.0"));
+        set.add(newXMLProperty("version-maven-failsafe-plugin", "2.20"));
         return set;
     }
 
-    protected Set<XMLProperty> getDependencyVersionProperties() {
-        Set<XMLProperty> set = SetUtils.newLinkedHashSet();
-        set.add(newXMLProperty("version.junit", "4.12"));
-        set.add(newXMLProperty("version.mockito-all", "1.10.19"));
+    protected Collection<XMLProperty> getDependencyVersionProperties() {
+        Collection<XMLProperty> set = newLinkedList();
+        set.add(newXMLProperty("version-junit", "4.12"));
+        set.add(newXMLProperty("version-mockito-all", "1.10.19"));
         return set;
+    }
+
+    private Collection<XMLProperty> newLinkedList() {
+        return new LinkedList<>();
     }
 }

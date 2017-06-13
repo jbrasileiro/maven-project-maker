@@ -1,8 +1,8 @@
 package org.npe4j.mpmaker.core.xml.pom;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlAnyElement;
 
@@ -14,10 +14,10 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 public class XMLPropertyGroup {
 
     @XmlAnyElement
-    private final Set<XMLProperty> properties = new HashSet<>();
+    private final List<XMLProperty> properties = new LinkedList<>();
 
-    public Set<XMLProperty> getProperties() {
-        return Collections.unmodifiableSet(properties);
+    public Collection<XMLProperty> getProperties() {
+        return new LinkedList<>(properties);
     }
 
     public void add(
@@ -26,7 +26,7 @@ public class XMLPropertyGroup {
     }
 
     public void addAll(
-        final Set<XMLProperty> set) {
+        final Collection<XMLProperty> set) {
         properties.addAll(set);
     }
 }

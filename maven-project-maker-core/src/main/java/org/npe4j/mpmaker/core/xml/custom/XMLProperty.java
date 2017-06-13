@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.namespace.QName;
 
+import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.npe4j.mpmaker.commons.CustomProperty;
@@ -15,7 +16,9 @@ import org.npe4j.mpmaker.commons.util.ToStringUtils;
 @XmlType
 public class XMLProperty
     extends
-    JAXBElement<String> {
+    JAXBElement<String>
+    implements
+    Comparable<XMLProperty>{
 
     private static final long serialVersionUID = -8897906940955846207L;
     private static final String NAMESPACE = "http://maven.apache.org/POM/4.0.0";
@@ -41,7 +44,7 @@ public class XMLProperty
         if (obj instanceof XMLProperty) {
             EqualsBuilder builder = new EqualsBuilder();
             XMLProperty o = (XMLProperty) obj;
-            builder.append(property, o.getProperty());
+            builder.append(property, o.property);
             return builder.isEquals();
         } else {
             return false;
@@ -58,5 +61,11 @@ public class XMLProperty
     @Override
     public String toString() {
         return ToStringUtils.toString(this);
+    }
+
+    @Override
+    public int compareTo(
+        final XMLProperty o) {
+        return new CompareToBuilder().append(property, o.property).build();
     }
 }

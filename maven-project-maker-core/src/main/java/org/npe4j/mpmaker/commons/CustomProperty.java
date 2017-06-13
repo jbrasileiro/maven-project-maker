@@ -2,13 +2,14 @@ package org.npe4j.mpmaker.commons;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.npe4j.mpmaker.commons.util.ToStringUtils;
 
 public final class CustomProperty<V extends Serializable>
     implements
-    Serializable {
+    Serializable, Comparable<CustomProperty<V>> {
 
     private static final long serialVersionUID = -6031131102090555223L;
     private final String name;
@@ -58,5 +59,11 @@ public final class CustomProperty<V extends Serializable>
     @Override
     public String toString() {
         return ToStringUtils.toString(this);
+    }
+
+    @Override
+    public int compareTo(
+        final CustomProperty<V> o) {
+        return new CompareToBuilder().append(name, o.name).append(value, o.value).build();
     }
 }
