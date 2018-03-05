@@ -7,8 +7,8 @@ import org.junit.Test;
 import org.npe4j.mpmaker.commons.StringUtil;
 import org.npe4j.mpmaker.commons.io.GenericFileMarshaller;
 import org.npe4j.mpmaker.commons.io.jaxb.GenericJAXBMarshaller;
-import org.npe4j.mpmaker.core.builder.DefaultXMLProjectObjectModelBuilder;
-import org.npe4j.mpmaker.core.xml.pom.XMLProjectObjectModel;
+import org.npe4j.mpmaker.core.builder.POMBuilder;
+import org.npe4j.mpmakerxml.xml.pom.XMLProjectObjectModel;
 import org.nullpointer4j.mvn.project.maker.test.commons.TIResourceBundle;
 
 public class POMTransformerImpTest {
@@ -22,12 +22,12 @@ public class POMTransformerImpTest {
         test = new POMTransformerImp(marshaller);
     }
 
-    private DefaultXMLProjectObjectModelBuilder getBuilder() {
-        return new DefaultXMLProjectObjectModelBuilder();
+    private POMBuilder getBuilder() {
+        return new POMBuilder();
     }
 
     private XMLProjectObjectModel build(
-        final DefaultXMLProjectObjectModelBuilder builder) {
+        final POMBuilder builder) {
         return builder.build();
     }
 

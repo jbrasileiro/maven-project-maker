@@ -6,7 +6,7 @@ import java.util.Map;
 import org.npe4j.mpmaker.bean.BasicPOMInformation;
 import org.npe4j.mpmaker.core.builder.DefaultPOMBuilder;
 import org.npe4j.mpmaker.core.builder.SimplePOMBuilder;
-import org.npe4j.mpmaker.core.builder.XMLProjectObjectModelBuilder;
+import org.npe4j.mpmaker.core.builder.XMLProjectObjectModelBPBuilder;
 import org.npe4j.mpmaker.core.enums.TypeProjectMaven;
 
 public final class POMBuilderFactoryImp
@@ -14,7 +14,7 @@ public final class POMBuilderFactoryImp
     POMBuilderFactory {
 
     @Override
-    public XMLProjectObjectModelBuilder make(
+    public XMLProjectObjectModelBPBuilder make(
         final TypeProjectMaven type,
         final BasicPOMInformation info) {
         return getMap(info).get(type).get();
@@ -22,7 +22,7 @@ public final class POMBuilderFactoryImp
 
     private Map<TypeProjectMaven, POMBuilderProvider> getMap(
         final BasicPOMInformation info) {
-        HashMap<TypeProjectMaven, POMBuilderProvider> result = new HashMap<>();
+        Map<TypeProjectMaven, POMBuilderProvider> result = new HashMap<>();
         result.put(TypeProjectMaven.NONE, newSimplePOMBuilder(info));
         result.put(TypeProjectMaven.DEFAULT, newDefaultPOMBuilder(info));
         return result;
@@ -39,7 +39,8 @@ public final class POMBuilderFactoryImp
     }
 }
 
+@FunctionalInterface
 interface POMBuilderProvider {
 
-    XMLProjectObjectModelBuilder get();
+    XMLProjectObjectModelBPBuilder get();
 }

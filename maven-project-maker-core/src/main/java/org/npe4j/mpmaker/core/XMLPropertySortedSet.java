@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.SortedSet;
 
-import org.npe4j.mpmaker.core.xml.custom.XMLProperty;
+import org.npe4j.mpmakerxml.xml.custom.XMLProperty;
 
 public final class XMLPropertySortedSet
     extends

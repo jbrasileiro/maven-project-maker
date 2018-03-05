@@ -3,15 +3,15 @@ package org.npe4j.mpmaker;
 import java.io.File;
 
 import org.npe4j.mpmaker.commons.dp.DPBuilder;
-import org.npe4j.mpmaker.commons.xml.FileMarshaller;
-import org.npe4j.mpmaker.core.xml.pom.XMLProjectObjectModel;
+import org.npe4j.mpmaker.core.xml.POMFileMarshaller;
+import org.npe4j.mpmakerxml.xml.pom.XMLProjectObjectModel;
 
 public class MavenProjectMaker {
 
-    private final FileMarshaller fileMarshaller;
+    private final POMFileMarshaller fileMarshaller;
 
     public MavenProjectMaker(
-        final FileMarshaller fileMarshaller) {
+        final POMFileMarshaller fileMarshaller) {
         super();
         this.fileMarshaller = fileMarshaller;
     }

@@ -5,19 +5,20 @@ import java.util.Locale;
 import org.npe4j.mpmaker.commons.dp.BeanDPBuilder;
 import org.npe4j.mpmaker.commons.dp.TemplateDPBuilder;
 import org.npe4j.mpmaker.core.enums.TypePOMPacking;
-import org.npe4j.mpmaker.core.xml.custom.XMLProperty;
-import org.npe4j.mpmaker.core.xml.pom.XMLBuild;
-import org.npe4j.mpmaker.core.xml.pom.XMLDependencyGroup;
-import org.npe4j.mpmaker.core.xml.pom.XMLDependencyManagement;
-import org.npe4j.mpmaker.core.xml.pom.XMLModuleGroup;
-import org.npe4j.mpmaker.core.xml.pom.XMLProjectObjectModel;
-import org.npe4j.mpmaker.core.xml.pom.XMLPropertyGroup;
+import org.npe4j.mpmakerxml.xml.custom.XMLProperty;
+import org.npe4j.mpmakerxml.xml.pom.XMLBuild;
+import org.npe4j.mpmakerxml.xml.pom.XMLDependencyGroup;
+import org.npe4j.mpmakerxml.xml.pom.XMLDependencyManagement;
+import org.npe4j.mpmakerxml.xml.pom.XMLModuleGroup;
+import org.npe4j.mpmakerxml.xml.pom.XMLPluginManagement;
+import org.npe4j.mpmakerxml.xml.pom.XMLProjectObjectModel;
+import org.npe4j.mpmakerxml.xml.pom.XMLPropertyGroup;
 
 abstract class AbstractXMLProjectObjectModelBuilder
     extends
     TemplateDPBuilder<XMLProjectObjectModel>
     implements
-    XMLProjectObjectModelBuilder {
+    XMLProjectObjectModelBPBuilder {
 
     public AbstractXMLProjectObjectModelBuilder(
         final BeanDPBuilder<XMLProjectObjectModel> builder) {
@@ -104,6 +105,14 @@ abstract class AbstractXMLProjectObjectModelBuilder
 
     public final AbstractXMLProjectObjectModelBuilder withBuild(
         final XMLBuild build) {
+        getBean().setBuild(build);
+        return this;
+    }
+
+    public AbstractXMLProjectObjectModelBuilder withPluginManagement(
+        final XMLPluginManagement pluginManagement) {
+        XMLBuild build = new XMLBuild();
+        build.setPluginManagement(pluginManagement);
         getBean().setBuild(build);
         return this;
     }

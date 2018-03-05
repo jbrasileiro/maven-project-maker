@@ -35,13 +35,25 @@
 		</module>
 		<module>maven-project-maker-core</module>
 		<module>TI-maven-project-maker</module>
+		<module>maven-project-maker-xml</module>
+		<module>maven-project-maker-commons</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
 			<!-- MODULES -->
 			<dependency>
 				<groupId>org.nullpointer4j</groupId>
+				<artifactId>maven-project-maker-commons</artifactId>
+				<version>1.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.nullpointer4j</groupId>
 				<artifactId>maven-project-maker-core</artifactId>
+				<version>1.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.nullpointer4j</groupId>
+				<artifactId>maven-project-maker-xml</artifactId>
 				<version>1.0.1</version>
 			</dependency>
 			<dependency>
@@ -333,6 +345,11 @@
 							</goals>
 						</execution>
 					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>2.5.2</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>

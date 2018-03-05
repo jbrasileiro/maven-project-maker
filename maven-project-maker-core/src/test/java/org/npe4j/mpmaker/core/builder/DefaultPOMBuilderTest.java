@@ -9,8 +9,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.npe4j.mpmaker.bean.EmptyBasicPOMInformation;
-import org.npe4j.mpmaker.core.xml.custom.XMLProperty;
-import org.npe4j.mpmaker.core.xml.pom.XMLPropertyGroup;
+import org.npe4j.mpmakerxml.xml.custom.XMLProperty;
+import org.npe4j.mpmakerxml.xml.pom.XMLDependency;
+import org.npe4j.mpmakerxml.xml.pom.XMLDependencyManagement;
+import org.npe4j.mpmakerxml.xml.pom.XMLPropertyGroup;
 
 public class DefaultPOMBuilderTest {
 
@@ -57,9 +59,49 @@ public class DefaultPOMBuilderTest {
         Assert.assertEquals(expected("version-mockito-all", "1.10.19"), list.get(8));
     }
 
+    @Test
+    public void testDependencyManagement() {
+        XMLDependencyManagement result = test.dependencyManagement();
+        List<XMLDependency> dependencies = result.getDependencies().getDependencies();
+        Assert.assertEquals(2, dependencies.size());
+        Assert.assertEquals(expectedJUnit(), dependencies.get(0));
+        Assert.assertEquals(expectedMockitoAll(), dependencies.get(1));
+
+    }
+
     private XMLProperty expected(
         final String name,
         final String value) {
         return new XMLProperty(name, value);
+    }
+
+
+    private XMLDependency expectedJUnit() {
+        String groupId = "junit";
+        String artifactId = "junit";
+        String version = "${version-junit}";
+        String scope = "test";
+        return xmlDependency(groupId, artifactId, version, scope);
+    }
+
+    private XMLDependency expectedMockitoAll() {
+        String groupId = "org.mockito";
+        String artifactId = "mockito-all";
+        String version = "${version-mockito-all}";
+        String scope = "test";
+        return xmlDependency(groupId, artifactId, version, scope);
+    }
+
+    private XMLDependency xmlDependency(
+        final String groupId,
+        final String artifactId,
+        final String version,
+        final String scope) {
+        XMLDependency xmlDependency = new XMLDependency();
+        xmlDependency.setGroupId(groupId);
+        xmlDependency.setArtifactId(artifactId);
+        xmlDependency.setVersion(version);
+        xmlDependency.setScope(scope);
+        return xmlDependency;
     }
 }

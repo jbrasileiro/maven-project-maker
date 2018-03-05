@@ -10,25 +10,25 @@ import org.junit.rules.TemporaryFolder;
 import org.npe4j.mpmaker.commons.io.FileReader;
 import org.npe4j.mpmaker.commons.io.GenericFileMarshaller;
 import org.npe4j.mpmaker.commons.io.jaxb.GenericJAXBMarshaller;
-import org.npe4j.mpmaker.commons.xml.XMLMarshaller;
-import org.npe4j.mpmaker.core.xml.pom.XMLProjectObjectModel;
+import org.npe4j.mpmaker.core.xml.POMXMLMarshaller;
+import org.npe4j.mpmakerxml.xml.pom.XMLProjectObjectModel;
 
 public class XMLReaderTest {
 
     private static final FileReader reader = new FileReader();
-    private XMLMarshaller test;
+    private POMXMLMarshaller marshaller;
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
 
     @Before
     public void setup() {
         GenericFileMarshaller reader = new GenericJAXBMarshaller();
-        test = new XMLMarshaller(reader);
+        marshaller = new POMXMLMarshaller(reader);
     }
 
     @Test
     public void readPOM() {
-        XMLProjectObjectModel result = test.readPOM(getFile("pom-empty.xml"));
+        XMLProjectObjectModel result = marshaller.readPOM(getFile("pom-empty.xml"));
         Assert.assertNull(result.getModelVersion());
         Assert.assertNull(result.getBuild());
         Assert.assertNull(result.getDependencies());
@@ -39,7 +39,7 @@ public class XMLReaderTest {
     @Test
     public void writePOM() {
         XMLProjectObjectModel o = new XMLProjectObjectModel();
-        File result = test.writePOM(o, new File(folder.getRoot(), "/POM/pom.xml"));
+        File result = marshaller.writePOM(o, new File(folder.getRoot(), "/POM/pom.xml"));
         StringBuilder builder = new StringBuilder();
         builder.append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n");
         builder.append("<project ");

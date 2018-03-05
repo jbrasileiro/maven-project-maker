@@ -1,7 +1,7 @@
 package org.npe4j.mpmaker.core;
 
 import org.npe4j.mpmaker.commons.TransformerTo;
-import org.npe4j.mpmaker.core.xml.pom.XMLProjectObjectModel;
+import org.npe4j.mpmakerxml.xml.pom.XMLProjectObjectModel;
 
 public interface GenericPOMTransformer<I>
     extends
