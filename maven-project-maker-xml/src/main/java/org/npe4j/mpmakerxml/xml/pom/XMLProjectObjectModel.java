@@ -18,7 +18,8 @@ import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 @XmlRootElement(
     namespace = "http://maven.apache.org/POM/4.0.0",
     name = "project")
-@XmlAccessorOrder(value=XmlAccessOrder.UNDEFINED)
+@XmlAccessorOrder(
+    value = XmlAccessOrder.UNDEFINED)
 public final class XMLProjectObjectModel
     extends
     XMLArtifact {
@@ -35,18 +36,18 @@ public final class XMLProjectObjectModel
     @XStreamAlias("modelVersion")
     @XmlElement
     private String modelVersion;
-    @XStreamAlias("groupId")
-    @XmlElement
-    private String groupId;
-    @XStreamAlias("artifactId")
-    @XmlElement
-    private String artifactId;
-    @XStreamAlias("version")
-    @XmlElement
-    private String version;
-    @XStreamAlias("packaging")
-    @XmlElement
-    private String packaging;
+//    @XStreamAlias("groupId")
+//    @XmlElement
+//    private String groupId;
+//    @XStreamAlias("artifactId")
+//    @XmlElement
+//    private String artifactId;
+//    @XStreamAlias("version")
+//    @XmlElement
+//    private String version;
+//    @XStreamAlias("packaging")
+//    @XmlElement
+//    private String packaging;
     @XStreamAlias("name")
     @XmlElement
     private String name;
@@ -75,10 +76,10 @@ public final class XMLProjectObjectModel
         super();
         XMLProjectObjectModel bean = builder.getBean();
         modelVersion = bean.modelVersion;
-        groupId = bean.groupId;
-        artifactId = bean.artifactId;
-        version = bean.version;
-        packaging = bean.packaging;
+        setGroupId(bean.getGroupId());
+        setArtifactId(bean.getArtifactId());
+        setVersion(bean.getVersion());
+        setPackaging(bean.getPackaging());
         name = bean.name;
         properties = bean.properties;
         modules = bean.modules;
@@ -96,49 +97,49 @@ public final class XMLProjectObjectModel
         this.modelVersion = modelVersion;
     }
 
-    @Override
-    public String getGroupId() {
-        return groupId;
-    }
-
-    @Override
-    public void setGroupId(
-        final String groupId) {
-        this.groupId = groupId;
-    }
-
-    @Override
-    public String getArtifactId() {
-        return artifactId;
-    }
-
-    @Override
-    public void setArtifactId(
-        final String artifactId) {
-        this.artifactId = artifactId;
-    }
-
-    @Override
-    public String getVersion() {
-        return version;
-    }
-
-    @Override
-    public void setVersion(
-        final String version) {
-        this.version = version;
-    }
-
-    @Override
-    public String getPackaging() {
-        return packaging;
-    }
-
-    @Override
-    public void setPackaging(
-        final String packaging) {
-        this.packaging = packaging;
-    }
+//    @Override
+//    public String getGroupId() {
+//        return groupId;
+//    }
+//
+//    @Override
+//    public void setGroupId(
+//        final String groupId) {
+//        this.groupId = groupId;
+//    }
+//
+//    @Override
+//    public String getArtifactId() {
+//        return artifactId;
+//    }
+//
+//    @Override
+//    public void setArtifactId(
+//        final String artifactId) {
+//        this.artifactId = artifactId;
+//    }
+//
+//    @Override
+//    public String getVersion() {
+//        return version;
+//    }
+//
+//    @Override
+//    public void setVersion(
+//        final String version) {
+//        this.version = version;
+//    }
+//
+//    @Override
+//    public String getPackaging() {
+//        return packaging;
+//    }
+//
+//    @Override
+//    public void setPackaging(
+//        final String packaging) {
+//        this.packaging = packaging;
+//    }
 
     public String getName() {
         return name;

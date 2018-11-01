@@ -8,7 +8,6 @@ import org.npe4j.mpmaker.core.POMBuilderFactory;
 import org.npe4j.mpmaker.core.POMBuilderFactoryImp;
 import org.npe4j.mpmaker.core.POMTransformer;
 import org.npe4j.mpmaker.core.POMTransformerImp;
-import org.npe4j.mpmaker.core.builder.XMLProjectObjectModelBPBuilder;
 import org.npe4j.mpmaker.core.enums.TypeProjectMaven;
 import org.npe4j.mpmakerxml.xml.pom.XMLProjectObjectModel;
 
@@ -20,8 +19,6 @@ public class CreateProjectSteps {
 
     private final POMTransformer transformer = new POMTransformerImp();
     private final POMBuilderFactory factory = new POMBuilderFactoryImp();
-
-    private XMLProjectObjectModelBPBuilder builder;
 
     private TypeProjectMaven type;
     private String group;

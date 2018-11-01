@@ -1,20 +1,41 @@
 package org.npe4j.mpmakerxml.xml.pom;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.npe4j.mpmaker.commons.util.ToStringUtils;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(
+    propOrder = {
+        "groupId",
+        "artifactId",
+        "version",
+        "packaging"
+    })
 public abstract class XMLArtifact {
 
     @XStreamAlias("groupId")
+    @XmlElement(
+        name = "groupId")
     private String groupId;
     @XStreamAlias("artifactId")
+    @XmlElement(
+        name = "artifactId")
     private String artifactId;
     @XStreamAlias("version")
+    @XmlElement(
+        name = "version")
     private String version;
     @XStreamAlias("packaging")
+    @XmlElement(
+        name = "packaging")
     private String packaging;
 
     public String getGroupId() {
