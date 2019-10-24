@@ -62,7 +62,7 @@ public class DefaultPOMBuilderTest {
     @Test
     public void testDependencyManagement() {
         XMLDependencyManagement result = test.dependencyManagement();
-        List<XMLDependency> dependencies = result.getDependencies().getDependencies();
+        List<XMLDependency> dependencies = new ArrayList<>(result.getDependencies().getDependencies());
         Assert.assertEquals(2, dependencies.size());
         Assert.assertEquals(expectedJUnit(), dependencies.get(0));
         Assert.assertEquals(expectedMockitoAll(), dependencies.get(1));

@@ -15,7 +15,7 @@ import com.thoughtworks.xstream.annotations.XStreamImplicit;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class XMLDependencyGroup {
 
-    @XStreamImplicit(
+    @XStreamImplicit(keyFieldName = "dependency",
         itemFieldName = "dependency")
     @XmlElement(
         name = "dependency")

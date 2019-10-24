@@ -7,14 +7,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamImplicit;
 
 @XStreamAlias("dependencyManagement")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class XMLDependencyManagement {
 
-    @XStreamImplicit(
-        itemFieldName = "dependency")
     @XmlElement
     private XMLDependencyGroup dependencies;
 

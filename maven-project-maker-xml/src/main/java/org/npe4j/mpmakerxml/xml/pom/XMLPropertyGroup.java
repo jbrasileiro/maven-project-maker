@@ -25,9 +25,19 @@ public class XMLPropertyGroup
 
     @XmlAnyElement(
         value = DomHandlerXMLXMLProperty.class)
-    private final List<XMLProperty> properties = new LinkedList<>();
+    private final List<XMLProperty> properties;
 
-    public List<XMLProperty> getProperties() {
+    public XMLPropertyGroup() {
+    	this(new LinkedList<>());
+    }
+
+    public XMLPropertyGroup(
+		List<XMLProperty> properties) {
+		super();
+		this.properties = properties;
+	}
+
+	public List<XMLProperty> getProperties() {
         return new LinkedList<>(properties);
     }
 
