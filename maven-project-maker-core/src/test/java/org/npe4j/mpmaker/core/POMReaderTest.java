@@ -10,7 +10,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import org.npe4j.mpmaker.commons.io.jaxb.GenericJAXBMarshaller;
@@ -26,8 +25,8 @@ public class POMReaderTest {
 
 	@Test
 	public void read() {
-		readDependency(new File("C:\\.rep\\git\\NFeCloud\\nfe-authorize"), new File("c:\\.tmp\\properties.log"));
-		generateBOM(new File("C:\\.rep\\git\\NFeCloud\\nfe-authorize"), new File("c:\\.tmp\\pom.xml"));
+		readDependency(new File("C:\\.rep\\git\\ex"), new File("c:\\.tmp\\properties.log"));
+		generateBOM(new File("C:\\.rep\\git\\ex"), new File("c:\\.tmp\\pom.xml"));
 	}
 
 	private void generateBOM(
@@ -43,6 +42,7 @@ public class POMReaderTest {
 		List<File> files = scanPOM(directory);
 		PomVO vo = new PomVO();
 		for (File each : files) {
+			System.err.println("reading " + each.getPath());
 			XMLProjectObjectModel pom = new POMXMLMarshaller(new GenericJAXBMarshaller()).readPOM(each);
 			vo.add(pom.getProperties());
 			vo.add(pom.getDependencyManagement());
@@ -58,7 +58,6 @@ public class POMReaderTest {
 
 		pom.setProperties(vo.toXMLPropertyGroup());
 		pom.setDependencyManagement(vo.toDependenciesManagement());
-		pom.setDependencies(vo.toXMLDependencyGroup());
 		new POMXMLMarshaller(new GenericJAXBMarshaller()).writePOM(pom, output);
 	}
 
@@ -132,15 +131,10 @@ public class POMReaderTest {
 	class PomVO {
 
 		private final List<XMLDependency> dependencies = new ArrayList<>();
-		private final List<XMLDependency> dependenciesManagement = new ArrayList<>();
 		private final List<XMLProperty> properties = new ArrayList<>();
 
 		public List<XMLDependency> getDependencies() {
 			return dependencies;
-		}
-
-		public List<XMLDependency> getDependenciesManagement() {
-			return dependenciesManagement;
 		}
 
 		public List<XMLProperty> getProperties() {
@@ -165,29 +159,33 @@ public class POMReaderTest {
 			XMLDependencyManagement dependencyManagement) {
 			if(Objects.nonNull(dependencyManagement)
 					&& Objects.nonNull(dependencyManagement.getDependencies())) {
-				this.dependenciesManagement.addAll(dependencyManagement.getDependencies().getDependencies());
+				this.dependencies.addAll(dependencyManagement.getDependencies().getDependencies());
 			}
 		}
 
-		public XMLDependencyGroup toXMLDependencyGroup() {
-			Collections.sort(this.dependencies);
-			XMLDependencyGroup result = new XMLDependencyGroup();
-			result.setDependencies(dependencies);
-			return result;
-		}
-
 		public XMLDependencyManagement toDependenciesManagement() {
-			Collections.sort(this.dependenciesManagement);
+			this.dependencies.forEach(each -> each.setScope(null));
 			XMLDependencyManagement result = new XMLDependencyManagement();
 			XMLDependencyGroup group = new XMLDependencyGroup();
-			group.setDependencies(dependenciesManagement);
+			group.setDependencies(distinct(this.dependencies));
 			result.setDependencies(group);
 			return result;
 		}
 
 		public XMLPropertyGroup toXMLPropertyGroup() {
-			Collections.sort(this.properties);
-			return new XMLPropertyGroup(this.properties);
+			return new XMLPropertyGroup(distinct(this.properties));
+		}
+
+		private <T extends Comparable<? super T>> List<T> distinct(
+			List<T> values) {
+			List<T> result = new ArrayList<>();
+			for (T each : values) {
+				if(!result.contains(each)) {
+					result.add(each);
+				}
+			}
+			Collections.sort(result);
+			return result;
 		}
 
 	}
